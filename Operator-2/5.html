@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1> Rs. <font id="ans"></font></h1>
+</body>
+</html>
+<script>
+
+    let calculate;
+    let gst = 18;
+    let services = 1000;
+    let price = prompt("enter value ");
+
+    calculate = services+(services*(gst/price))
+
+    console.log(calculate)
+    document.getElementById('ans').innerHTML = calculate;
+
+
+
+
+</script>
