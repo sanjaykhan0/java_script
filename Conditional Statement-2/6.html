@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="ans"></h1>
+</body>
+</html>
+<script>
+
+let pr = prompt("enter person tage")
+
+if (pr>=0 && pr<=10000){
+    document.getElementById('ans').innerHTML= "Tax = 5%"
+}
+else if (pr>=10001 && pr<=20000){
+    document.getElementById('ans').innerHTML="Tax = 10%"
+}
+else if (pr>20001 && pr<=30000){
+    document.getElementById('ans').innerHTML="Tax = 15%"
+}
+else if (pr>=30001 && pr<=40000){
+    document.getElementById('ans').innerHTML="Tax = 20%"
+}
+else if (pr>= 40001){
+    document.getElementById('ans').innerHTML="Tax = 25%"
+}
+
+</script>

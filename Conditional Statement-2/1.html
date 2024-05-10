@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>first unit bill : <span id="one"></span></h1>
+    <h1>second unit bill : <span id="two"></span></h1>
+    <h1>above unit bill : <span id="three"></span></h1>
+
+</body>
+
+</html>
+<script>
+    let unit = prompt("enter first 100 units : ")
+   
+    if (unit <= 100) {
+
+        document.getElementById("one").innerHTML =  unit*1
+    }
+    else if (unit <= 200){
+       
+        document.getElementById("two").innerHTML = 100+(unit-100)*2
+
+    }
+    else if (unit >= 300) {
+    
+        document.getElementById("three").innerHTML = 300+(unit-200) *3
+    }
+
+
+
+</script>
