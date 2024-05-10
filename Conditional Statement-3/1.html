@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<!--     
+    <h1>enter password</h1> -->
+    <!-- <input type="password" id="pas"> -->
+    <h1 id="ans"></h1>
+</body>
+</html>
+<script>
+    let paas = prompt("enter password")
+    let storepas = "abc123@"
+
+    if(paas === "")
+    {
+        document.getElementById("ans").innerHTML = "empty"
+    }
+    else{
+        if (paas === storepas)
+        {
+            document.getElementById("ans").innerHTML="correct"
+        }
+        else{
+            document.getElementById("ans").innerHTML="incorrect"
+
+        }
+
+    }
+
+
+
+
+
+</script>
