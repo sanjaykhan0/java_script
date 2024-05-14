@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="ans"></h1>
+</body>
+</html>
+<script>
+
+    let price= prompt("enter price")
+  
+    if(price >= 50 && price < 100){
+        document.getElementById("ans").innerHTML="have a discount of 10."
+    }
+    else if (price >= 100){
+        document.getElementById("ans").innerHTML="have a discount of 20"
+    }
+    else if (price <50){
+        document.getElementById("ans").innerHTML="have a discount of 0"
+    }
+    
+
+
+
+</script>
