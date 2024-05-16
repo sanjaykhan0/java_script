@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <center>
+        <h1>oparetor</h1>
+        <hr>
+        value 1
+        <input type="number" id="num1">
+        <br>
+        value 2
+        <input type="number" id="num2">
+
+<br><br>
+        <select name="" id="maths" style="font-size: 30px;">
+            <option value="sum">sum</option>
+            <option value="subtract">subtract </option>
+            <option value="multiply">multiply </option>
+            <option value="divide">divide </option>
+            
+        </select>
+        <button onclick="week()" style="font-size: 30px;">progress</button>
+        <br><br><br>
+        <hr>
+        <h1 id="ans" style="font-size: 100px;">ans</h1>
+    
+
+
+
+    </center>
+
+
+</body>
+
+</html>
+<script>
+    function week(){
+        let a = document.getElementById("maths").value
+let num1= document.getElementById("num1").value
+let num2= document.getElementById("num2").value
+
+switch (a) {
+    case "sum": document.getElementById("ans").innerHTML = +num1 + +num2
+        break;
+    case "subtract": document.getElementById("ans").innerHTML = +num1 - +num2
+        break;
+    case "multiply": document.getElementById("ans").innerHTML =+num1 * +num2
+        break;
+    case "divide": document.getElementById("ans").innerHTML = +num1 / +num2
+        break;
+}
+    }
+
+    
+
+</script>
