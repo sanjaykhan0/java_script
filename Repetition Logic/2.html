@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>enter value</h1>
+    <input type="number" id="in"><br><br><hr>
+    <h1 id="ans"></h1><br><hr>
+
+    <button onclick="myFunction()">Click Me</button><hr>
+</body>
+</html>
+<script>
+
+    function myFunction(){
+
+        let a = document.getElementById("in").value
+    let rev = 0,rem
+    let total=0
+
+    while(a != 0){
+     rem = a % 10
+     total += rem
+     rev = rev * 10 + rem
+     a = Math.floor(a / 10)
+
+    }
+    console.log(+total)
+    document.getElementById("ans").innerHTML=total
+
+    }
+
+  
+
+
+
+</script>

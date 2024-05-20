@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    enter value <br>
+    <input type="number" id="in">
+    
+    <h1 id="ans"></h1>
+    <button onclick="fff()">click</button>
+</body>
+</html>
+
+<script>
+
+function fff(){
+    let b= document.getElementById("in").value
+
+for(let i=1; i<=b ; i++){
+    if (i%3==0 && i%5==0){
+        console.log("FizzBuzz")
+        document.getElementById("ans").innerHTML+="FizzBuzz"+"<br>"
+    }
+    else if(i%3==0)
+    {
+        console.log("Fizz")
+        document.getElementById("ans").innerHTML+="Fizz"+"<br>"
+    }
+    else if(i%5==0){
+        console.log("Buzz")
+        document.getElementById("ans").innerHTML+="Buzz"+"<br>"
+    }
+   
+    else{
+        console.log(i)
+        document.getElementById("ans").innerHTML+=i+"<br>"
+    }
+}
+
+}
+
+
+
+
+</script>
