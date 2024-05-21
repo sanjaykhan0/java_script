@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <select name="" id="sel">
+        <option value="true">on</option>
+        <option value="false">off</option>
+    </select>
+    <button id="checkButton">Check Dark Mode</button>
+</body>
+</html>
+
+<script>
+    document.getElementById('checkButton').addEventListener('click', function() {
+        let darkmode = document.getElementById('sel').value;
+        
+        if (darkmode === 'true') {
+            console.log("Dark mode is on");
+        } else {
+            console.log("Dark mode is off");
+        }
+    });
+</script>
