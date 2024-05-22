@@ -1,0 +1,49 @@
+<!--  6. Design a function that finds string has an "A" in starting or end. -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 id="ans"></h1>
+
+</body>
+
+</html>
+<script>
+
+    function concat(str = "") {
+        
+
+        if(str[0]==="a" || str.length==="a"){
+            return  "a in starting"
+        }
+        else if(str[0]==="A"){
+            return  "A in starting"
+
+        }
+        else if(str[str.length-1]==="A"){
+            return  "A in last"
+
+        }
+        else if (str[str.length-1]==="a"){
+            return  "a in last"
+
+        }
+        else{
+            return "no a in starting or last"
+        }
+        
+    }
+let a= prompt("enter string")
+
+
+    document.getElementById("ans").innerHTML = concat(a)
+
+
+
+</script>
