@@ -1,0 +1,38 @@
+<!-- **Question 1:**
+Using closures find sum of 3 numbers. -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 id="ans"></h1>
+</body>
+
+</html>
+<script>
+
+    function a(x) {
+
+        function b(y) {
+
+            function c(z) {
+                console.log(x+y+z);
+                document.getElementById("ans").innerHTML=x+y+z
+            }
+            c(30)
+        }
+
+        b(20)
+    }
+    a(10)
+
+
+
+
+
+</script>
