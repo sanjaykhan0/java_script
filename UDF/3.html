@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>enter value</h1><br>
+    <input type="text" id="valu"><br>
+    <h1 id="ans"></h1>
+    <button onclick="simp()">click</button>
+</body>
+
+</html>
+<script>
+    function simp() {
+        
+        let a = document.getElementById("valu").value
+        let b = a / 1000
+
+        console.log(b);
+        document.getElementById("ans").innerHTML=b+"km"
+
+    }
+
+
+</script>
