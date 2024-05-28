@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <select name="main" id="main">
+        <option value="basicfunction" id="one">basicfunction</option>
+        <option value="namefunction" id="two">namefunction</option>
+        <option value="iifefunction" id="three">iifefunction</option>
+        <option value="arrowfunction" id="four">arrowfunction</option>
+    </select>
+    <h1 id="ans"></h1>
+    <button onclick="main1()">click here</button>
+    
+</body>
+</html>
+
+<script> 
+
+    function main1(){
+        var main = document.getElementById("main").value
+        switch(main){
+            case "basicfunction":
+            function basic(n){
+                if(n<=1){
+                    return 1;
+                }
+                else{
+                    return n*basic(n-1)
+                }
+            }
+            document.getElementById("ans").innerHTML = basic(prompt("enter value"))
+            console.log(basic(prompt("enter value")))
+            break;
+
+
+
+             case "namefunction":
+            let a = function name(n){
+                if(n<=1){
+                    return 1;
+                }
+                else{
+                    return n*name(n-1)
+                }
+            }
+            document.getElementById("ans").innerHTML = a(prompt("enter value"))
+            console.log(a(prompt("enter value")))
+            break; 
+
+            case "iifefunction":
+            let b =  (function iife(n){
+                if(n<=1){
+                    return 1;
+                }
+                else{
+                    return n*iife(n-1)
+                }
+            })
+            document.getElementById("ans").innerHTML = b(prompt("enter value"))
+            console.log(b(prompt("enter value")))
+            break; 
+        
+            case "arrowfunction":
+            let c =  arrow = (n) =>{
+                if(n<=1){
+                    return 1;
+                }
+                else{
+                    return n*iife(n-1)
+                }
+            }
+            document.getElementById("ans").innerHTML = c(prompt("enter value"))
+            console.log(c(prompt("enter value")))
+            break; 
+        }
+
+
+
+    }
+
+
+</script>
