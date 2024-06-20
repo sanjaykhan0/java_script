@@ -1,0 +1,69 @@
+<!DOCTYPE html> 
+<html>
+ <head>
+  
+ <title>Content Manipulation</title>
+ </head> 
+<body>
+ 
+  <h1 id="firstname">Your FirstName</h1>
+   
+<div id="lastname">
+
+Your LastName  </div>
+  
+ <p id="fullname">Your First&LastName</p>
+ 
+  <hr/>
+   
+<button onclick="setFirstName()">FIRSTNAME</button>
+
+    <button onclick="setLastName()">LASTNAME</button>
+ 
+  <button onclick="setFullName()">FIRSTNAME NAME</button> 
+
+    <button onclick="resetDefaults()">RESET DEFAULTS</button>
+ 
+
+ </body>
+ </html>
+ 
+ <script type="text/javascript">
+ 
+    
+  function setFirstName() {
+     document.querySelector("#firstname").textContent = "Sanjay"
+  }
+
+   
+    function setLastName() {
+     document.querySelector("#lastname").textContent = "Khan"
+     }
+
+     
+
+  function setFullName() {
+   
+        // Change the content of p to your full name (firstname - lastname)
+    
+ let firstname = document.querySelector("#firstname").textContent = "Sanjay"
+ let lastname = document.querySelector("#lastname").textContent = "Khan"
+  document.querySelector("#fullname").textContent = firstname+" "+lastname
+   }
+
+     
+
+
+  function resetDefaults(){
+      
+
+     // reset the firstname, lastname, and fullname to empty values 
+        
+ let firstname = document.querySelector("#firstname").textContent = ""
+ let lastname = document.querySelector("#lastname").textContent = ""
+  document.querySelector("#fullname").textContent = ""
+
+        }
+ 
+
+  </script>
