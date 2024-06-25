@@ -153,7 +153,7 @@ function todo(event){
   let td2 = document.createElement("td")
   let td3 = document.createElement("td")
   let input = document.createElement("input")
-  if(priority === "High")
+   if(priority === "High")
   {
    td2.style.backgroundColor = "red";
   }
@@ -161,19 +161,23 @@ function todo(event){
    td2.style.backgroundColor = "green";
 
   }
+ 
   if(priority === "High")
   {
-   td2.style.color = "green";
+  let marq = document.createElement("marquee")
+  td3.append (marq)
+  marq.textContent = "High Priority"
+
   }
   else{
-   td2.style.color = "red";
+    td3.append(input)
+ input.type = "checkbox"
 
   }
 
   td1.innerHTML = name
   td2.innerHTML = priority
- td3.append(input)
- input.type = "checkbox"
+
   tr.append(td1,td2,td3)
 
   document.querySelector("tbody").append(tr)
