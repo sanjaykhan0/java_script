@@ -10,38 +10,43 @@
 </body>
 </html>
 <script>
+
     let arr = [1,2,3,4,5]
 
-    Array.prototype.map = function(el){
+    Array.prototype.map=function(el){
         let newarr = []
-        
-        for(let i=0; i<this.length; i++){
+
+        for(let i=0; i<this.length;i++){
             newarr.push(el(this[i]))
         }
         return newarr
+
+
     }
-    let ans = arr.map((el)=>{
+    let newarr = arr.map((el)=>{
         return el*2
     })
-    console.log(ans);
-
-
-
+    console.log(newarr);
+    
+    
     let arr1 = [1,2,3,4,5]
 
-    Array.prototype.fillter = function(el){
+    Array.prototype.map=function(el){
         let newarr = []
-        
-        for(let i=0; i<this.length; i++){
-            if(el(this[i]))
-            newarr.push((this[i]))
+
+        for(let i=0; i<this.length;i++){
+           
+            if(el(this[i])){
+                newarr.push((this[i]))
+            }
         }
         return newarr
+
+
     }
-    let ans1 = arr.fillter((el)=>{
+    let newarr1 = arr.map((el)=>{
         return el%2==0
     })
-    console.log(ans1);
-
+    console.log(newarr1);
 
 </script>
