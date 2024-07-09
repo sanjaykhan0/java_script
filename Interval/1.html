@@ -14,6 +14,11 @@
     body{
         background-color: black;
     }
+    img{
+        display: none;
+        height: 70vh;
+        width: 100vh;
+    }
 </style>
 <body>
     
@@ -42,7 +47,7 @@
 clearInterval(stop)
 document.querySelector(".s1").innerHTML = s1
     }
-  },5000)
+  },10000)
 
   let s2=59
 document.querySelector(".s2").innerHTML = s2
@@ -56,10 +61,10 @@ clearInterval(stop2)
 document.querySelector(".s2").innerHTML = 0+"0"
 
     }
-  },1000)
+  },10000)
 
 
-  let s3 = 0
+  let s3 = 50
 document.querySelector(".s3").innerHTML = s3
 
   let stop3= setInterval(()=>{
@@ -69,7 +74,8 @@ document.querySelector(".s3").innerHTML = s3
   if(s3===60){
     clearInterval(stop3)
     document.querySelector(".s3").innerHTML = 0+"0"
+    document.querySelector("img").style.display="block"
   }
 
-  },100)
+  },1000)
 </script>
