@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    h1{
+
+        font-size: 100px;
+        color: white;
+    }
+    body{
+        background-color: black;
+    }
+    img{
+        display: none;
+        height: 70vh;
+        width: 100vh;
+    }
+</style>
+<body>
+    
+    <center>
+        <h1><span class="s1">11</span>
+            :<span class="s2">59</span>
+            :<span class="s3">00</span>
+        </h1>
+
+        <img src="https://i.pinimg.com/originals/b6/f9/26/b6f9266a0d77423c5ecec5570dd7995c.gif" alt="">
+    </center>
+
+</body>
+</html>
+<script>
+    
+ let s1=11
+
+  document.querySelector(".s1").innerHTML = s1
+
+  let stop = setInterval(()=>{
+
+    s1++
+
+    if(s1 === 12){
+clearInterval(stop)
+document.querySelector(".s1").innerHTML = s1
+    }
+  },10000)
+
+  let s2=59
+document.querySelector(".s2").innerHTML = s2
+
+  let stop2 = setInterval(()=>{
+
+    s2++
+
+    if(s2 === 60){
+clearInterval(stop2)
+document.querySelector(".s2").innerHTML = 0+"0"
+
+    }
+  },10000)
+
+
+  let s3 = 50
+document.querySelector(".s3").innerHTML = s3
+
+  let stop3= setInterval(()=>{
+    s3++
+    document.querySelector(".s3").innerHTML = s3
+
+  if(s3===60){
+    clearInterval(stop3)
+    document.querySelector(".s3").innerHTML = 0+"0"
+    document.querySelector("img").style.display="block"
+  }
+
+  },1000)
+</script>
