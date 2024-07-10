@@ -6,17 +6,49 @@
     <title>Document</title>
 </head>
 <style>
+    body{
+        background-color: black;
+    }
     img{
         width: 100%;
         height: 99vh;
+        display: none;
+        animation: slide 5s linear;
+        
+    }
+  
+    .slider{
+        width: 100%;
+        height: 99vh;
+        display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+        
+    }
+  
+    @keyframes slide {
+        25%{
+            width:50%;
+            height: 50%;
+            transform: skewX(20deg);
+            
+        }
+        50%{
+            width: 100%;
+            height: 100%;
+            transform: skewY(0deg);
+
+        }
+
     }
 </style>
 <body>
     <div class="slider">
     
-            <img src="https://images.unsplash.com/photo-1489112318845-bcfb7233b1a1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8MTkyMCUyMHglMjAxMDgwfGVufDB8fDB8fHww" alt="" class="img1">
-            <img src="https://plus.unsplash.com/premium_photo-1664014655187-8931664ad6df?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8MTkyMCUyMHglMjAxMDgwfGVufDB8fDB8fHww" alt="" class="img1">
-            <img src="https://images.unsplash.com/photo-1526404801122-40fc40fca08f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8MTkyMCUyMHglMjAxMDgwfGVufDB8fDB8fHww" alt="" class="img1">
+            <img src="https://images.unsplash.com/photo-1489112318845-bcfb7233b1a1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8MTkyMCUyMHglMjAxMDgwfGVufDB8fDB8fHww" alt="" class="img1" >
+            <img src="https://plus.unsplash.com/premium_photo-1664014655187-8931664ad6df?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8MTkyMCUyMHglMjAxMDgwfGVufDB8fDB8fHww" alt="" class="img2">
+            <img src="https://images.unsplash.com/photo-1526404801122-40fc40fca08f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8MTkyMCUyMHglMjAxMDgwfGVufDB8fDB8fHww" alt="" class="img3">
    
        
     </div>
@@ -31,6 +63,7 @@
 
         for(let i=0; i<slider.length;i++){
             slider[i].style.display = "none"
+            document.querySelectorAll("img").s
 
         }
         slider[index].style.display="block"
@@ -45,7 +78,7 @@
                 index=0
                 
             }
-        },1000)
+        },2500)
     }
 show()
 </script>
