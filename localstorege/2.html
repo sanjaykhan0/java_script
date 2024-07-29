@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="username">
+    <button id="add">Add User</button>
+
+    <button id="update" style="display: none;">Update User</button>
+    <p id="userList"></p>
+    <script>
+        function displaydata() {
+            var arr =[]
+            fetch('https://fakestoreapi.com/products')
+                .then((res) => {
+                    return res.json()
+    
+                })
+                .then((json) => {
+                    users.push(json);
+                    console.log(users);
+                    localStorage.setItem("User", JSON.stringify(arr))
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+            let div = document.getElementById("userList");
+            div.innerHTML = "";
+            let users = JSON.parse(localStorage.getItem("Users")) || [];
+            users.forEach((element, index) => {
+                let table = document.createElement("table")
+                table.style.border = "1px solid black"
+                let tr = document.createElement("tr");
+                tr.style.border = "1px solid black"
+                let td1 = document.createElement("td");
+                td1.style.border = "1px solid black"
+                let td2 = document.createElement("td");
+                td2.style.border = "1px solid black"
+                let td3 = document.createElement("td");
+                td3.style.border = "1px solid black"
+                table.append(tr)
+                tr.append(td1, td2, td3)
+
+                let p = document.createElement("p");
+                p.innerText = element.name;
+                td1.append(p);
+                let btn = document.createElement("button");
+                btn.innerText = "Delete";
+                td2.append(btn)
+                let btn2 = document.createElement("button")
+                btn2.innerText = "Update"
+                td3.append(btn2)
+                let deleteUserIndex = index;
+                btn.addEventListener("click", function (index) {
+                    users.splice(deleteUserIndex, 1);
+                    localStorage.setItem("Users", JSON.stringify(users));
+
+                    displaydata();
+
+                })
+
+
+                let updateUserIndex = index;
+                btn2.addEventListener("click", function (index) {
+                    document.getElementById("update").style.display = "inline";
+                    document.getElementById("add").style.display = "none";
+                    document.getElementById("username").value = element.name;
+
+                    document.getElementById("update").addEventListener("click", function () {
+                        users[updateUserIndex].name = document.getElementById("username").value;
+                        localStorage.setItem("Users", JSON.stringify(users));
+                        
+                        let user = document.getElementById("username").value = "";
+
+                        document.getElementById("add").style.display = "inline";
+                        document.getElementById("update").style.display = "none";
+
+
+                        displaydata();
+                    })
+                })
+
+                div.append(table);
+            });
+        }
+
+        document.getElementById("add").addEventListener("click", function getdata() {
+            let users = JSON.parse(localStorage.getItem("Users")) || [];
+            let user = document.getElementById("username").value;
+
+            let obj = {
+                name: user
+            };
+           
+            localStorage.setItem("Users", JSON.stringify(users));
+
+            document.getElementById("username").value = "";
+
+            displaydata();
+        });
+
+
+        displaydata();
+    </script>
+</body>
+
+</html>
