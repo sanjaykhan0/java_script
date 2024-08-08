@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        .heading{
+            font-size: 50px;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .container{
+            box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+        }
+
+        .rec {
+            height: 95vh;
+            /* border: 1px solid; */
+            padding: 60px 30px;
+            overflow: scroll;
+            border-left: 1px solid;
+        }
+
+        .rec1 {
+            height: 95vh;
+            /* border: 1px solid; */
+            /* padding: 60px 30px; */
+        }
+
+        h1 {
+            font-size: 80px;
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: 800;
+            color: rgb(93, 107, 69);
+        }
+
+        .h2 {
+            font-size: 30px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-weight: 200;
+        }
+
+        h2 {
+            font-family: 'Times New Roman', Times, serif;
+            letter-spacing: 2px;
+            color: rgb(93, 107, 69);
+        }
+
+        .btn {
+            border: 1px solid;
+            font-weight: 600;
+            color: white;
+            background-color: #FF8A03;
+        }
+
+        li {
+            line-height: 40px;
+        }
+
+        .scroll {
+            overflow: scroll;
+            width: 100%;
+            height: 230px;
+        }
+
+        ::-webkit-scrollbar {
+            visibility: hidden;
+        }
+        ::-webkit-scrollbar-corner{
+            visibility: hidden;
+        }
+
+        img {
+            width: 104%;
+            margin-left: -15px;
+            height: 100%;
+        }
+        .row{
+            position: relative;
+        }
+        #remove{
+            padding:0px 5px;
+            position: absolute;
+            top: 0px;
+            right: 0px;
+
+        }
+        body{
+            background-image: url('https://www.shutterstock.com/image-photo/food-background-spices-herbs-utensil-260nw-2255294293.jpg');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <font class="heading" style="color: rgb(93, 107, 69);">Recipe Book</font>
+        <select id="food">
+            <option value="Choose">Choose</option>
+            <option value="Sushi">Sushi</option>
+            <option value="Burek">Burek</option>
+            <option value="Corba">Corba</option>
+            <option value="Kumpir">Kumpir</option>
+            <option value="Bistek">Bistek</option>
+            <option value="Tamiya">Tamiya</option>
+            <option value="Big Mac">Big Mac</option>
+    
+        </select>
+    </center>
+    
+<br>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-6 rec1">
+                <img src="" alt="">
+            </div>
+            <div class="col-12 col-md-6 rec">
+                <button id="remove">&times;</button>
+                <h1>Dish Name</h1><br>
+                <font class="h2">BEEF & BEAN SPROUTS</font><br><br>
+                <button class="btn">Sushi Rice</button><br><br>
+
+                <hr><br>
+                <h2>Ingredient</h2>
+                <br>
+                <ul>
+                    <li class="list1">Ingredient</li>
+                    <li class="list2">Ingredient</li>
+                    <li class="list3">Ingredient</li>
+                    <li class="list4">Ingredient</li>
+                    <li class="list5">Ingredient</li>
+                </ul>
+                <div class="scroll">
+                    <p>
+                        STEP 1
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script>
+        document.getElementById("food").addEventListener("change", function () {
+            let selectedFood = this.value;
+            if (selectedFood !== "Choose") {
+                fetchMealData(selectedFood);
+            }
+        });
+
+        function fetchMealData(meal) {
+            let url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${meal}`;
+            fetch(url)
+                .then((res) => res.json())
+                .then((json) => {
+                    console.log(json);
+                    displaydata(json);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+                localStorage.setItem("meal");
+        }
+
+        function displaydata(data) {
+            let food = document.getElementById("food")
+            let name = document.querySelector("h1");
+            let catogry = document.querySelector(".h2")
+            let btn = document.querySelector(".btn")
+            let idt1 = document.querySelector(".list1")
+            let idt2 = document.querySelector(".list2")
+            let idt3 = document.querySelector(".list3")
+            let idt4 = document.querySelector(".list4")
+            let idt5 = document.querySelector(".list5")
+            let steps = document.querySelector("p")
+            let img = document.querySelector("img")
+
+            if (data.meals && data.meals.length > 0) {
+                name.innerHTML = data.meals[0].strMeal;
+                //catogry.innerHTML = data.meals[0].strCategory;
+                btn.innerHTML = data.meals[0].strArea;
+                idt1.innerHTML = data.meals[0].strIngredient1;
+                idt2.innerHTML = data.meals[0].strIngredient2;
+                idt3.innerHTML = data.meals[0].strIngredient3;
+                idt4.innerHTML = data.meals[0].strIngredient4;
+                idt5.innerHTML = data.meals[0].strIngredient5;
+                steps.innerHTML = data.meals[0].strInstructions;
+                img.src = data.meals[0].strMealThumb;
+            } else  if (data.meals && data.meals.length > 0) {
+                name.innerHTML = data.meals[1].strMeal;
+                //catogry.innerHTML = data.meals[0].strCategory;
+                btn.innerHTML = data.meals[1].strArea;
+                idt1.innerHTML = data.meals[1].strIngredient1;
+                idt2.innerHTML = data.meals[1].strIngredient2;
+                idt3.innerHTML = data.meals[1].strIngredient3;
+                idt4.innerHTML = data.meals[1].strIngredient4;
+                idt5.innerHTML = data.meals[1].strIngredient5;
+                steps.innerHTML = data.meals[1].strInstructions;
+                img.src = data.meals[1].strMealThumb;
+            } else if (data.meals && data.meals.length > 0) {
+                name.innerHTML = data.meals[2].strMeal;
+                //catogry.innerHTML = data.meals[0].strCategory;
+                btn.innerHTML = data.meals[2].strArea;
+                idt1.innerHTML = data.meals[2].strIngredient1;
+                idt2.innerHTML = data.meals[2].strIngredient2;
+                idt3.innerHTML = data.meals[2].strIngredient3;
+                idt4.innerHTML = data.meals[2].strIngredient4;
+                idt5.innerHTML = data.meals[2].strIngredient5;
+                steps.innerHTML = data.meals[2].strInstructions;
+                img.src = data.meals[2].strMealThumb;
+            } else  if (data.meals && data.meals.length > 0) {
+                name.innerHTML = data.meals[1].strMeal;
+                //catogry.innerHTML = data.meals[0].strCategory;
+                btn.innerHTML = data.meals[3].strArea;
+                idt1.innerHTML = data.meals[3].strIngredient1;
+                idt2.innerHTML = data.meals[3].strIngredient2;
+                idt3.innerHTML = data.meals[3].strIngredient3;
+                idt4.innerHTML = data.meals[3].strIngredient4;
+                idt5.innerHTML = data.meals[3].strIngredient5;
+                steps.innerHTML = data.meals[3].strInstructions;
+                img.src = data.meals[3].strMealThumb;
+            } else  if (data.meals && data.meals.length > 0) {
+                name.innerHTML = data.meals[4].strMeal;
+                //catogry.innerHTML = data.meals[0].strCategory;
+                btn.innerHTML = data.meals[4].strArea;
+                idt1.innerHTML = data.meals[4].strIngredient1;
+                idt2.innerHTML = data.meals[4].strIngredient2;
+                idt3.innerHTML = data.meals[4].strIngredient3;
+                idt4.innerHTML = data.meals[4].strIngredient4;
+                idt5.innerHTML = data.meals[4].strIngredient5;
+                steps.innerHTML = data.meals[4].strInstructions;
+                img.src = data.meals[4].strMealThumb;
+            } else  if (data.meals && data.meals.length > 0) {
+                name.innerHTML = data.meals[5].strMeal;
+                //catogry.innerHTML = data.meals[0].strCategory;
+                btn.innerHTML = data.meals[5].strArea;
+                idt1.innerHTML = data.meals[5].strIngredient1;
+                idt2.innerHTML = data.meals[5].strIngredient2;
+                idt3.innerHTML = data.meals[5].strIngredient3;
+                idt4.innerHTML = data.meals[5].strIngredient4;
+                idt5.innerHTML = data.meals[5].strIngredient5;
+                steps.innerHTML = data.meals[5].strInstructions;
+                img.src = data.meals[5].strMealThumb;
+            } else if (data.meals && data.meals.length > 0) {
+                name.innerHTML = data.meals[6].strMeal;
+                //catogry.innerHTML = data.meals[0].strCategory;
+                btn.innerHTML = data.meals[6].strArea;
+                idt1.innerHTML = data.meals[6].strIngredient1;
+                idt2.innerHTML = data.meals[6].strIngredient2;
+                idt3.innerHTML = data.meals[6].strIngredient3;
+                idt4.innerHTML = data.meals[6].strIngredient4;
+                idt5.innerHTML = data.meals[6].strIngredient5;
+                steps.innerHTML = data.meals[6].strInstructions;
+                img.src = data.meals[6].strMealThumb;
+            } else if (data.meals && data.meals.length > 0) {
+                name.innerHTML = data.meals[7].strMeal;
+                //catogry.innerHTML = data.meals[0].strCategory;
+                btn.innerHTML = data.meals[7].strArea;
+                idt1.innerHTML = data.meals[7].strIngredient1;
+                idt2.innerHTML = data.meals[7].strIngredient2;
+                idt3.innerHTML = data.meals[7].strIngredient3;
+                idt4.innerHTML = data.meals[7].strIngredient4;
+                idt5.innerHTML = data.meals[7].strIngredient5;
+                steps.innerHTML = data.meals[7].strInstructions;
+                img.src = data.meals[7].strMealThumb;
+            } else {
+                name.innerHTML = "No meal found";
+            }
+
+            let delet = document.getElementById("remove")
+
+            delet.addEventListener("click", () => {
+                localStorage.removeItem("meal");
+                window.location.reload();
+
+            })
+            let edit = document.querySelector(".btn")
+            edit.addEventListener("click", () => {
+                // localStorage.setItem("meal", JSON.stringify(data.meals[0]));
+                let btn = document.querySelector(".btn")
+                btn.innerHTML= prompt("enter value")
+
+            })
+
+        }
+
+    </script>
+</body>
+
+</html>

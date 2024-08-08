@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Management System</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #121212;
+            color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: #1e1e1e;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            color: #ffffff;
+            margin-top: 0;
+            font-size: 26px;
+            border-bottom: 2px solid #e91e63;
+            padding-bottom: 10px;
+        }
+
+        .task-form,
+        .task-list {
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #292929;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        input,
+        select {
+            width: calc(100% - 24px);
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 8px;
+            box-sizing: border-box;
+            background-color: #333;
+            color: #e0e0e0;
+        }
+
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            background-color: #e91e63;
+            color: #fff;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: background-color 0.3s, transform 0.2s;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #ff4081;
+            transform: scale(1.05);
+        }
+
+        .task-list {
+            background-color: #212121;
+        }
+
+        .task {
+            border-bottom: 1px solid #333;
+            padding: 15px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .task:last-child {
+            border-bottom: none;
+        }
+
+        .task-content {
+            flex-grow: 1;
+        }
+
+        .task h3 {
+            margin: 0;
+            color: #ffffff;
+            font-size: 20px;
+        }
+
+        .task p {
+            margin: 5px 0;
+            color: #9e9e9e;
+        }
+
+        .task .priority {
+            font-weight: bold;
+            color: #e91e63;
+        }
+
+        .task-actions button {
+            background-color: #00c853;
+            padding: 10px 15px;
+        }
+
+        .task-actions button:hover {
+            background-color: #00e676;
+        }
+
+        .task-actions .delete-button {
+            background-color: #d32f2f;
+        }
+
+        .task-actions .delete-button:hover {
+            background-color: #f44336;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="task-form">
+            <h2>Add New Task</h2>
+            <input type="text" id="task-title" placeholder="Title">
+            <input type="text" id="task-description" placeholder="Description">
+            <input type="date" id="task-due-date" placeholder="Due Date">
+            <select id="task-priority">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </select>
+            <input type="file">
+            <button id="add-task">Add Task</button>
+        </div>
+        <div class="task-list">
+            <h2>Task List</h2>
+            <div id="tasks"></div>
+        </div>
+    </div>
+
+    <script>
+        const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        let editIndex = -1;
+
+        function saveTasks() {
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        }
+
+        function displayTasks() {
+            const taskList = document.getElementById('tasks');
+            taskList.innerHTML = '';
+            tasks.forEach((task, index) => {
+                const taskElement = document.createElement('div');
+                taskElement.className = 'task';
+                taskElement.innerHTML = `
+                    <div class="task-content">
+                        <h3>${task.title}</h3>
+                        <p>${task.description}</p>
+                        <p>Due: ${task.dueDate}</p>
+                        <p class="priority">Priority: ${task.priority}</p>
+                    </div>
+                    <div class="task-actions">
+                        <button onclick="editTask(${index})">Edit</button>
+                        <button class="delete-button" onclick="deleteTask(${index})">Delete</button>
+                    </div>
+                `;
+                taskList.appendChild(taskElement);
+            });
+        }
+
+        function addTask() {
+            const title = document.getElementById('task-title').value;
+            const description = document.getElementById('task-description').value;
+            const dueDate = document.getElementById('task-due-date').value;
+            const priority = document.getElementById('task-priority').value;
+
+            if (title && dueDate) {
+                const newTask = { title, description, dueDate, priority };
+
+                if (editIndex >= 0) {
+                    tasks[editIndex] = newTask;
+                    editIndex = -1;
+                    document.getElementById('add-task').innerText = 'Add Task';
+                } else {
+                    tasks.push(newTask);
+                }
+
+                saveTasks();
+                displayTasks();
+                clearForm();
+            } else {
+                alert('Title and Due Date are required');
+            }
+        }
+
+        function editTask(index) {
+            const task = tasks[index];
+            document.getElementById('task-title').value = task.title;
+            document.getElementById('task-description').value = task.description;
+            document.getElementById('task-due-date').value = task.dueDate;
+            document.getElementById('task-priority').value = task.priority;
+            document.getElementById('add-task').innerText = 'Save Task';
+            editIndex = index;
+        }
+
+        function deleteTask(index) {
+            tasks.splice(index, 1);
+            saveTasks();
+            displayTasks();
+        }
+
+        function clearForm() {
+            document.getElementById('task-title').value = '';
+            document.getElementById('task-description').value = '';
+            document.getElementById('task-due-date').value = '';
+            document.getElementById('task-priority').value = 'low';
+        }
+
+        document.getElementById('add-task').addEventListener('click', addTask);
+
+        displayTasks();
+    </script>
+</body>
+
+</html>
